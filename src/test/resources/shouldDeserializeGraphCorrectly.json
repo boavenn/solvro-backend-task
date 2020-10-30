@@ -1,0 +1,36 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "links": [
+    {
+      "source": 1,
+      "target": 2,
+      "distance": 5
+    },
+    {
+      "source": 2,
+      "target": 3,
+      "distance": 10
+    },
+    {
+      "source": 3,
+      "target": 1,
+      "distance": 15
+    }
+  ],
+  "stops": [
+    {
+      "id": 1,
+      "stop_name": "Stop 1"
+    },
+    {
+      "id": 2,
+      "stop_name": "Stop 1"
+    },
+    {
+      "id": 3,
+      "stop_name": "Stop 1"
+    }
+  ]
+}
