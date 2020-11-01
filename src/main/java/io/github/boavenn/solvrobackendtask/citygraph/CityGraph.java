@@ -1,13 +1,14 @@
 package io.github.boavenn.solvrobackendtask.citygraph;
 
 import io.github.boavenn.solvrobackendtask.citygraph.graph.Graph;
+import io.github.boavenn.solvrobackendtask.utils.Dijkstrable;
 
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 
-public class CityGraph
+public class CityGraph implements Dijkstrable<Stop, Link>
 {
     private Graph<Stop, Link> graph = new Graph<>(false);
 
@@ -29,5 +30,10 @@ public class CityGraph
 
     public List<Link> links() {
         return graph.edges();
+    }
+
+    @Override
+    public Graph<Stop, Link> toGraph() {
+        return graph;
     }
 }

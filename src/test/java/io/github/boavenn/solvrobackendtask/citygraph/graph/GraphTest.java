@@ -1,5 +1,7 @@
 package io.github.boavenn.solvrobackendtask.citygraph.graph;
 
+import io.github.boavenn.solvrobackendtask._testutils.SimpleEdge;
+import io.github.boavenn.solvrobackendtask._testutils.SimpleVertex;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

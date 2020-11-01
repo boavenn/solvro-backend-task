@@ -1,5 +1,6 @@
-package io.github.boavenn.solvrobackendtask.citygraph.graph;
+package io.github.boavenn.solvrobackendtask._testutils;
 
+import io.github.boavenn.solvrobackendtask.citygraph.graph.Vertex;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -7,7 +8,7 @@ import java.util.Objects;
 
 @AllArgsConstructor
 @Getter
-class SimpleVertex implements Vertex<Integer>
+public class SimpleVertex implements Vertex<Integer>
 {
     private Integer key;
 
