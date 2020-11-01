@@ -49,7 +49,7 @@ public class CityGraphDeserializer
         @JsonIgnore
         private Object graph;
         private List<SerializedLink> links = new LinkedList<>();
-        private List<SerializedStop> stops = new LinkedList<>();
+        private List<SerializedStop> nodes = new LinkedList<>();
     }
 
     private final ObjectMapper mapper;
@@ -63,7 +63,7 @@ public class CityGraphDeserializer
         CityGraph graph = new CityGraph();
         Map<Integer, Stop> stops = new HashMap<>();
 
-        serializedGraph.getStops().forEach(s -> {
+        serializedGraph.getNodes().forEach(s -> {
             Stop stop = new Stop(s.id, s.name);
             graph.addStop(stop);
             stops.put(stop.getId(), stop);

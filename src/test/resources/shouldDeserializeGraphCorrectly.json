@@ -19,7 +19,7 @@
       "distance": 15
     }
   ],
-  "stops": [
+  "nodes": [
     {
       "id": 1,
       "stop_name": "Stop 1"
