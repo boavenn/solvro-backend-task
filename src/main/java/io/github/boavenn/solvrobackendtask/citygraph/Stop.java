@@ -11,7 +11,7 @@ import java.util.Objects;
 public class Stop implements Vertex<Integer>
 {
     private Integer id;
-    private String name;
+    private String name; // should be natural id probably
 
     @Override
     public Integer getKey() {
