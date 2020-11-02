@@ -26,13 +26,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        String[] whitelist = {
+                "/auth/**",
+                "/v2/api-docs",
+                "/configuration/ui",
+                "/swagger-resources/**",
+                "/configuration/security",
+                "/swagger-ui.html",
+                "/webjars/**"
+        };
+
         http
                 .csrf()
                 .disable()
                 .cors()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/auth/**").permitAll()
+                .antMatchers(whitelist).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin();
