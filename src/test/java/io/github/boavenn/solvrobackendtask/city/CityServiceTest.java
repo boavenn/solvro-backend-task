@@ -9,13 +9,17 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
@@ -64,5 +68,30 @@ class CityServiceTest
         // then
         assertThat(stopsNames).isEqualTo(List.of("stop 2", "stop 1", "stop 3"));
         assertThat(pathInfo.getDistance()).isEqualTo(30);
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenCityWithGivenNameIsNotFound() {
+        // given
+        given(cityRepository.findByName("city")).willReturn(Optional.empty());
+
+        // then
+        assertThatExceptionOfType(NoSuchElementException.class)
+                .isThrownBy(() -> cityService.getPath("city", "x", "y"))
+                .withMessageContaining("Cannot find city with name");
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenStopWithGivenNameIsNotFound() {
+        // given
+        CityGraph cityGraph = Mockito.mock(CityGraph.class);
+        given(cityGraph.findStop(anyString())).willReturn(Optional.empty());
+        City city = new City("city", cityGraph);
+        given(cityRepository.findByName("city")).willReturn(Optional.of(city));
+
+        // then
+        assertThatExceptionOfType(NoSuchElementException.class)
+                .isThrownBy(() -> cityService.getPath("city", "x", "y"))
+                .withMessageContaining("Cannot find stop with name");
     }
 }
